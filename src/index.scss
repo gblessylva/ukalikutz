@@ -1,0 +1,16 @@
+.ukalikutz-tabs {
+    margin-bottom: 20px;
+}
+
+.ukalikutz-tab-content {
+    display: none;
+}
+
+.ukalikutz-tab-content.active {
+    display: block;
+}
+
+.active-tab {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+}
