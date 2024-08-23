@@ -75,7 +75,13 @@ function ukalikutz_enqueue_style_script( $admin_page ) {
 		array(
 			'in_footer' => true,
 		)
+		
 	);
+
+	wp_localize_script( 'ukalikutz-script', 'wpApiSettings', array(
+        'nonce' => wp_create_nonce( 'wp_rest' ),
+    ) );
+	
 
 	wp_enqueue_style(
 		'ukalikutz-style',
