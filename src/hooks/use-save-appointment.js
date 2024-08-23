@@ -5,13 +5,15 @@ const useSaveAppointment = () => {
     const [successMessage, setSuccessMessage] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const saveAppointment = async ({ clientName, appointmentDate, appointmentTime, stylist }) => {
+    const saveAppointment = async ({ clientName, appointmentDate, stylist }) => {
+
         // Reset messages
         setErrorMessage(null);
         setSuccessMessage(null);
 
         // Validate form fields
-        if (!clientName || !appointmentDate || !appointmentTime || !stylist) {
+        if (!clientName || !appointmentDate  || !stylist) {
+            console.log('All fields are required.');
             setErrorMessage('All fields are required.');
             return;
         }
@@ -29,7 +31,6 @@ const useSaveAppointment = () => {
                 body: JSON.stringify({
                     client_name: clientName,
                     appointment_date: formattedDate,
-                    appointment_time: appointmentTime,
                     stylist: stylist,
                 }),
             });

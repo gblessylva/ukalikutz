@@ -1,4 +1,4 @@
-import { Button, Icon, Modal, ButtonGroup, TextControl, DateTimePicker, Notice, Spinner } from '@wordpress/components';
+import { Button, Icon, Modal, ButtonGroup, TextControl, Notice, Spinner, DateTimePicker } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import useSaveAppointment from '../../hooks/use-save-appointment'; // Import the custom hook
 
@@ -8,7 +8,6 @@ const Appointments = () => {
     const [isOpen, setOpen] = useState(false);
     const [clientName, setClientName] = useState('');
     const [appointmentDate, setAppointmentDate] = useState(new Date());
-    // const [appointmentTime, setAppointmentTime] = useState('');
     const [stylist, setStylist] = useState('');
 
     const { saveAppointment, errorMessage, successMessage, loading } = useSaveAppointment();
@@ -26,7 +25,6 @@ const Appointments = () => {
         saveAppointment({
             clientName,
             appointmentDate,
-            // appointmentTime,
             stylist,
         });
     };
@@ -34,7 +32,6 @@ const Appointments = () => {
     const resetForm = () => {
         setClientName('');
         setAppointmentDate(new Date());
-        // setAppointmentTime('');
         setStylist('');
     };
 
@@ -69,18 +66,14 @@ const Appointments = () => {
                     />
 
                     <DateTimePicker
+                        label= {"Appointment Date and Time"}
                         currentDate={appointmentDate}
                         onChange={(newDate) => setAppointmentDate(newDate)}
                         is12Hour={true}
                         minDate={new Date()} // Prevent selecting past dates
                     />
 
-                    {/* <TextControl
-                        label="Appointment Time"
-                        value={appointmentTime}
-                        onChange={(value) => setAppointmentTime(value)}
-                        placeholder="10:00 AM"
-                    /> */}
+                    
 
                     <TextControl
                         label="Stylist"
