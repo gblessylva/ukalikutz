@@ -43,7 +43,7 @@ function ukalikutz_save_appointment( WP_REST_Request $request ) {
     $params = $request->get_params();
 
     // Validate required fields
-    if ( empty( $params['client_name'] ) || empty( $params['appointment_date'] ) || empty( $params['stylist'] ) ) {
+    if ( empty( $params['client_id'] ) || empty( $params['appointment_date'] ) || empty( $params['stylist_id'] ) ) {
         return new WP_REST_Response( array(
             'message' => 'Required fields are missing.',
         ), 400 );
@@ -52,12 +52,13 @@ function ukalikutz_save_appointment( WP_REST_Request $request ) {
     // Prepare the data
     $post_data = array(
         'post_type'     => 'appointment',
-        'post_title'    => sanitize_text_field( $params['client_name'] . ' - ' . $params['appointment_date'] ),
+        'post_title'    => sanitize_text_field( $params['client_id'] . ' - ' . $params['appointment_date'] ),
         'post_status'   => 'publish', // Set to publish or draft based on requirements
         'meta_input'    => array(
             'appointment_date' => sanitize_text_field( $params['appointment_date'] ),
             'appointment_time' => sanitize_text_field( $params['appointment_time'] ),
-            'stylist'          => sanitize_text_field( $params['stylist'] ),
+            'stylist_id'          => sanitize_text_field( $params['stylist_id'] ),
+            'client_id'          => sanitize_text_field( $params['client_id'] ),
         ),
     );
 
