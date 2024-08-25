@@ -5,20 +5,21 @@ const useSaveAppointment = () => {
     const [successMessage, setSuccessMessage] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const saveAppointment = async ({ clientName, appointmentDate, stylist }) => {
+    const saveAppointment = async ({ selectedClient, appointmentDate, selectedStylist }) => {
 
         // Reset messages
         setErrorMessage(null);
         setSuccessMessage(null);
 
         // Validate form fields
-        if (!clientName || !appointmentDate  || !stylist) {
+        if (!selectedClient || !appointmentDate  || !selectedStylist) {
             console.log('All fields are required.');
             setErrorMessage('All fields are required.');
             return;
         }
-
-        const formattedDate = appointmentDate.toISOString().split('T')[0]; // Format the date
+        // console.log(appointmentDate);
+        const [formattedDate, timeWithMillis] = appointmentDate.toISOString().split('T');
+        const formattedTime = timeWithMillis.split('.')[0]; // This removes milliseconds and 'Z' at the end
         setLoading(true);
 
         try {
@@ -29,9 +30,10 @@ const useSaveAppointment = () => {
                     'X-WP-Nonce': wpApiSettings.nonce, // WordPress nonce for authentication
                 },
                 body: JSON.stringify({
-                    client_name: clientName,
+                    client_id: selectedClient,
                     appointment_date: formattedDate,
-                    stylist: stylist,
+                    appointment_time: formattedTime,
+                    stylist_id: selectedStylist,
                 }),
             });
 
@@ -41,7 +43,6 @@ const useSaveAppointment = () => {
                 console.log(result.message);
                 setErrorMessage(result.message || 'An error occurred while saving the appointment.');
             } else {
-                console.log("saved");
                 setSuccessMessage('Appointment saved successfully!');
             }
         } catch (error) {
