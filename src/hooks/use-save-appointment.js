@@ -12,11 +12,27 @@ const useSaveAppointment = () => {
         setSuccessMessage(null);
 
         // Validate form fields
-        if (!selectedClient || !appointmentDate  || !selectedStylist) {
-            console.log('All fields are required.');
-            setErrorMessage('All fields are required.');
+        if(!selectedClient){
+            console.log('Client field is required.');
+            setErrorMessage('Client field is required.');
             return;
         }
+        if(!appointmentDate){
+            console.log('Appointment Date field is required.');
+            setErrorMessage('appointmentDate field is required.');
+            return;
+        }
+        if(!selectedStylist){
+            console.log('Stylist field is required.');
+            setErrorMessage('selectedStylist field is required.');
+            return;
+        }
+
+        // if (!selectedClient || !appointmentDate  || !selectedStylist) {
+        //     console.log('All fields are required.');
+        //     setErrorMessage('All fields are required.');
+        //     return;
+        // }
         // console.log(appointmentDate);
         const [formattedDate, timeWithMillis] = appointmentDate.toISOString().split('T');
         const formattedTime = timeWithMillis.split('.')[0]; // This removes milliseconds and 'Z' at the end
