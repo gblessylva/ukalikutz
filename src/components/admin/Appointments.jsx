@@ -4,6 +4,7 @@ import useSaveAppointment from '../../hooks/use-save-appointment'; // Import the
 import { StylistsComboBox } from '../general/StylistsComboBox';
 import { ClientsComboBox } from '../general/ClientsComboBox';
 import { Calendar } from '@schedule-x/react';
+import CalendarScheduler from '../calandar/Schedular'
 
 import CalendarApp from "../calandar/calandar";
 import { AppointmentListView } from './AppointmentListView';
@@ -37,6 +38,7 @@ const Appointments = () => {
     }
 
     const handleSaveAppointment = () => {
+        console.log(selectedClient);
         saveAppointment({
             selectedClient,
             appointmentDate,
@@ -86,6 +88,7 @@ const Appointments = () => {
             </div>
             {
                 isListView && (<>
+                   
                     <AppointmentListView />
                 </>)
             }

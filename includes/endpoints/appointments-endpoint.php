@@ -55,11 +55,21 @@ function ukalikutz_save_appointment( WP_REST_Request $request ) {
             'message' => 'Required fields are missing.',
         ), 400 );
     }
+    // Fetch user data using the client_id
+    $client = get_userdata( intval( $params['client_id'] ) );
+
+    if ( ! $client ) {
+        return new WP_REST_Response( array(
+            'message' => 'Invalid client ID.',
+        ), 400 );
+    }
+    // Get the client's full name
+    $client_full_name = $client->first_name . ' ' . $client->last_name;
 
     // Prepare the data
     $post_data = array(
         'post_type'     => 'appointment',
-        'post_title'    => sanitize_text_field( $params['client_id'] . ' - ' . $params['appointment_date'] ),
+        'post_title'    => sanitize_text_field( $client_full_name . ' - ' . $params['appointment_date'] ),
         'post_status'   => 'publish', // Set to publish or draft based on requirements
         'meta_input'    => array(
             'appointment_date' => sanitize_text_field( $params['appointment_date'] ),
@@ -118,8 +128,8 @@ function ukalikutz_get_appointments() {
 
 
          // Format the date
-         $formatted_date = date( 'jS F, Y', strtotime( $appointment_date ) );
-         $formatted_time = date( 'h:i A', strtotime( $appointment_time ) );
+        $formatted_date = date( 'jS F, Y', strtotime( $appointment_date ) );
+        $formatted_time = date( 'h:i A', strtotime( $appointment_time ) );
         $formatted_appointments[] = array(
             'id' => $appointment->ID,
             'title' => $appointment->post_title,

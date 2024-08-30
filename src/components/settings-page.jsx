@@ -1,7 +1,7 @@
 import { TabPanel, Button, PanelBody } from '@wordpress/components';
 import { Dashboard } from './admin/Dashboard';
 import { Appointments } from './admin/Appointments';
-import { Stylists } from './admin/Stylits';
+import { Stylists } from './admin/Stylists';
 import {SalonCatalogs} from './admin/SalonCatalogs'
 
 const onSelect = ( tabName ) => {

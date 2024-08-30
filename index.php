@@ -31,7 +31,7 @@ function ukalikutz_register_admin_menu() {
 		'manage_options',
 		'ukalikutz',
 		'ukalikutz_admin_pages',
-		'dashicons-scissors',
+		'dashicons-calendar-alt',
 		20
 	);
 	
@@ -177,7 +177,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/user-roles.php';
 // Custom Endpoints
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/stylelists-endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/appointments-endpoint.php';
-
+require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/customers-endpoint.php';
 
 // CPTS
 require_once plugin_dir_path(__FILE__) . 'includes/admin/appointments-cpt.php';
