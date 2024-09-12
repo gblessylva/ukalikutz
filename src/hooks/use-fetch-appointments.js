@@ -1,6 +1,5 @@
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { color } from '@wordpress/icons';
 
 const useFetchAppointments = () => {
     const [appointments, setAppointments] = useState([]);

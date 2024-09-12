@@ -133,8 +133,10 @@ function ukalikutz_get_appointments() {
         $formatted_appointments[] = array(
             'id' => $appointment->ID,
             'title' => $appointment->post_title,
-            'date' => $formatted_date,
-            'time' => $formatted_time ,
+            'time' => $appointment_time,
+            'date'=>$appointment_date,
+            'formated_date' => $formatted_date,
+            'formated_time' => $formatted_time ,
             'stylist' =>  $stylist_name,
             'client' => $client_name,
             'cal_date'=>'2024-08-29 10:05',

@@ -9,7 +9,8 @@
 		"@wordpress/element": "^5.27.0",
 		"@wordpress/i18n": "^4.50.0",
 		"@wordpress/icons": "^9.42.0",
-		"@wordpress/notices": "^4.19.0"
+		"@wordpress/notices": "^4.19.0",
+		"lucide-react": "^0.439.0"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.9.0"
