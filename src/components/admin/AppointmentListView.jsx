@@ -20,8 +20,8 @@ const AppointmentListView = () => {
                 appointments.map((appointment) => (
                     <div key={appointment.id} className="appointment-item">
                         <h4>{appointment.title}</h4>
-                        <p>Date: {appointment.date}</p>
-                        <p>Time: {appointment.time}</p>
+                        <p>Date: {appointment.formated_date}</p>
+                        <p>Time: {appointment.formated_time}</p>
                         <p>Stylist: {appointment.stylist}</p>
                         <p>Client: {appointment.client}</p>
                     </div>
