@@ -3,6 +3,7 @@ import { Dashboard } from './admin/Dashboard';
 import { Appointments } from './admin/Appointments';
 import { Stylists } from './admin/Stylists';
 import { SalonCatalogs } from './admin/SalonCatalogs';
+import { Options } from './admin/Options';
 
 const onSelect = ( tabName ) => {
 	// Update the URL param without reloading the page
@@ -16,6 +17,7 @@ const tabs = [
 	{ name: 'appointments', title: 'Appointments', content: <Appointments /> },
 	{ name: 'stylists', title: 'Stylists', content: <Stylists /> },
 	{ name: 'catalogs', title: 'Salon Catalogs', content: <SalonCatalogs /> },
+	{ name: 'options', title: 'Options', content: <Options /> },
 ];
 
 const SettingsPage = () => (
