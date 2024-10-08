@@ -1,0 +1,19 @@
+/* admin/styles/SalonCatalogsStyles.css */
+.catalog-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.catalog-card {
+    width: 300px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-card img {
+    border-radius: 8px;
+}
+.catalog-header{
+    display: flex;
+    
+}

@@ -178,6 +178,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/user-roles.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/stylelists-endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/appointments-endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/customers-endpoint.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/salon-catalogue-endpoint.php';
 
 // CPTS
 require_once plugin_dir_path(__FILE__) . 'includes/admin/appointments-cpt.php';
+
+// Salon Catalogue Custom Taxonomy
+require_once plugin_dir_path(__FILE__) . 'includes/admin/salon-catalogue.php';
+// Helpers
+require_once plugin_dir_path(__FILE__) . 'includes/helpers/ukalikutz-helper-class.php';

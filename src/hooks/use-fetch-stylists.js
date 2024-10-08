@@ -5,33 +5,37 @@ import { useState, useEffect } from '@wordpress/element';
  * @returns {Array} - List of stylist options.
  */
 function useFetchStylists() {
-    const [options, setOptions] = useState([]);
+	const [ options, setOptions ] = useState( [] );
 
-    useEffect(() => {
-        const fetchStylists = async () => {
-            try {
-                const response = await fetch('/wp-json/ukalikutz/v1/stylists'); // Custom endpoint
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const stylists = await response.json();
+	useEffect( () => {
+		const fetchStylists = async () => {
+			try {
+				const response = await fetch(
+					'/wp-json/ukalikutz/v1/stylists'
+				); // Custom endpoint
+				if ( ! response.ok ) {
+					throw new Error(
+						`HTTP error! Status: ${ response.status }`
+					);
+				}
+				const stylists = await response.json();
 
-                const stylistOptions = stylists.map(stylist => ({
-                    id: stylist.ID,
-                    label: `${stylist.display_name} - Stylist`,
-                    value: stylist.ID
-                }));
+				const stylistOptions = stylists.map( ( stylist ) => ( {
+					id: stylist.ID,
+					label: `${ stylist.display_name } - Stylist`,
+					value: stylist.ID,
+				} ) );
 
-                setOptions(stylistOptions);
-            } catch (error) {
-                console.error('Error fetching stylists:', error);
-            }
-        };
+				setOptions( stylistOptions );
+			} catch ( error ) {
+				console.error( 'Error fetching stylists:', error );
+			}
+		};
 
-        fetchStylists();
-    }, []);
+		fetchStylists();
+	}, [] );
 
-    return options;
+	return options;
 }
 
 export default useFetchStylists;

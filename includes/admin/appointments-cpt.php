@@ -35,7 +35,7 @@ function ukalikutz_register_appointments_cpt() {
         'labels'             => $labels,
         'public'             => true,
         'publicly_queryable' => true,
-        'show_ui'            => false,
+        'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
         'rewrite'            => array( 'slug' => 'appointments' ),
