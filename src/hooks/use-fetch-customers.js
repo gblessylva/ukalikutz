@@ -5,33 +5,37 @@ import { useState, useEffect } from '@wordpress/element';
  * @returns {Array} - List of customer options.
  */
 function useFetchCustomers() {
-    const [options, setOptions] = useState([]);
+	const [ options, setOptions ] = useState( [] );
 
-    useEffect(() => {
-        const fetchcustomers = async () => {
-            try {
-                const response = await fetch('/wp-json/ukalikutz/v1/customers'); // Custom endpoint
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const customers = await response.json();
+	useEffect( () => {
+		const fetchcustomers = async () => {
+			try {
+				const response = await fetch(
+					'/wp-json/ukalikutz/v1/customers'
+				); // Custom endpoint
+				if ( ! response.ok ) {
+					throw new Error(
+						`HTTP error! Status: ${ response.status }`
+					);
+				}
+				const customers = await response.json();
 
-                const customerOptions = customers.map(customer => ({
-                    id: customer.ID,
-                    label: `${customer.display_name}`,
-                    value: customer.ID
-                }));
+				const customerOptions = customers.map( ( customer ) => ( {
+					id: customer.ID,
+					label: `${ customer.display_name }`,
+					value: customer.ID,
+				} ) );
 
-                setOptions(customerOptions);
-            } catch (error) {
-                console.error('Error fetching customers:', error);
-            }
-        };
+				setOptions( customerOptions );
+			} catch ( error ) {
+				console.error( 'Error fetching customers:', error );
+			}
+		};
 
-        fetchcustomers();
-    }, []);
-    
-    return options;
+		fetchcustomers();
+	}, [] );
+
+	return options;
 }
 
 export default useFetchCustomers;

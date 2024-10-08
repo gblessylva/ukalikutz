@@ -66,6 +66,8 @@ function ukalikutz_enqueue_style_script( $admin_page ) {
 	}
 
 	$asset = include $asset_file;
+	
+	wp_enqueue_media();
 
 	wp_enqueue_script(
 		'ukalikutz-script',
@@ -178,6 +180,16 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/user-roles.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/stylelists-endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/appointments-endpoint.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/customers-endpoint.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/endpoints/salon-catalogue-endpoint.php';
+require_once plugin_dir_path(__FILE__) . 'includes/endpoints/admin-hooks-endpoints.php';
 
 // CPTS
 require_once plugin_dir_path(__FILE__) . 'includes/admin/appointments-cpt.php';
+
+// Salon Catalogue Custom Taxonomy
+require_once plugin_dir_path(__FILE__) . 'includes/admin/salon-catalogue.php';
+// Helpers
+require_once plugin_dir_path(__FILE__) . 'includes/helpers/ukalikutz-helper-class.php';
+// Hooks
+
+require_once plugin_dir_path(__FILE__) . 'includes/hooks/admin-hooks.php';

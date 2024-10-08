@@ -31,9 +31,7 @@ const useSettings = () => {
 				},
 			},
 		} ).then( () => {
-			createSuccessNotice(
-				__( 'Settings saved.', 'ukalikutz' )
-			);
+			createSuccessNotice( __( 'Settings saved.', 'ukalikutz' ) );
 		} );
 	};
 
