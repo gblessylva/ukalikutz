@@ -173,11 +173,6 @@ const CatalogModal = ({ isOpen, onRequestClose, onSubmit }) => {
 
 						)}
 
-						{/* Upload new image input */}
-						{/* <label htmlFor="catalogImage">Upload Catalog Image</label>
-						<input type="file" id="catalogImage" onChange={handleFileChange} accept="image/*" /> */}
-
-
 
 						{/* Button to select existing image from media library */}
 						<Button

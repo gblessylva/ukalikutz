@@ -1,13 +1,11 @@
 // hooks/useOptions.js
 import { useEffect, useState } from 'react';
 import apiFetch from '@wordpress/api-fetch';
-import { __ } from '@wordpress/i18n'; // Import for translation
-import { useDispatch } from '@wordpress/data'; // Import useDispatch for data store
-import { store as noticesStore } from '@wordpress/notices'; // Import notices store
+import { __ } from '@wordpress/i18n';
 
 const useOptions = () => {
 	const [showUploadButton, setShowUploadButton] = useState(true);
-	const { createErrorNotice, createNotice } = useDispatch(noticesStore); // Get the dispatch methods
+	const [notice, setNotice] = useState({ message: '', type: '' }); // State to manage notices
 
 	// Fetch current settings on component mount
 	useEffect(() => {
@@ -39,23 +37,22 @@ const useOptions = () => {
 					show_upload_button: newValue,
 				},
 			});
-
-			// Create a success notice
-			createNotice(
-				__('Manual upload button is now ' + (newValue ? 'enabled' : 'disabled') + '.', 'ukalikutz'), // Localize the notice message
-				{ type: 'snackbar', explicitDismiss: true } // Options for the notice
-			);
+			// Set a success notice
+			setNotice({
+				message: __('Manual upload button is now ' + (newValue ? 'enabled' : 'disabled') + '.', 'ukalikutz'),
+				type: 'success',
+			});
 		} catch (error) {
 			console.error('Error updating setting:', error);
-			// Create an error notice if the update fails
-			createErrorNotice(__('Failed to update setting. Please try again.', 'ukalikutz'), {
-				type: 'snackbar',
-				explicitDismiss: true,
+			// Set an error notice if the update fails
+			setNotice({
+				message: __('Failed to update setting. Please try again.', 'ukalikutz'),
+				type: 'error',
 			});
 		}
 	};
 
-	return { showUploadButton, handleToggleChange };
+	return { showUploadButton, handleToggleChange, notice };
 };
 
-export default useOptions;
+export { useOptions};

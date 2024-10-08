@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Button, Icon } from '@wordpress/components'; // Assuming you're using WordPress components
 import useCatalogs from '../../hooks/use-catalogs';
-import CatalogModal from '../general/CatalogoModal';  // Import the CatalogModal component
+import CatalogModal from '../general/CatalogModal';  // Import the CatalogModal component
 import '../admin/styles/SalonCatalogsStyles.css';
 
 
