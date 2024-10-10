@@ -193,3 +193,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/helpers/ukalikutz-helper-clas
 // Hooks
 
 require_once plugin_dir_path(__FILE__) . 'includes/hooks/admin-hooks.php';
+
+// Frontend
+
+require_once plugin_dir_path(__FILE__) . 'includes/frontend/index.php';

@@ -16,6 +16,40 @@ class UkalikutzHelpers {
             update_term_meta( $term_id, 'salon_catalogue_thumbnail', $thumbnail_url );
         }
     }
+
+    /**
+     * Returns the directory path of the current plugin.
+     *
+     * @return string The plugin directory path.
+     */
+    public static function getPluginDir() {
+        return plugin_dir_path(__DIR__);
+    }
+
+    /**
+     * Returns the directory path of the current file.
+     *
+     * @return string The file's directory path.
+     */
+    public static function getFileDir() {
+        return plugin_dir_path(__FILE__);
+    }
+
+    /**
+     * Includes a file frondent files to the plugin's directory.
+     *
+     */
+    public static function includeFrontendFiles() {
+        include self::getPluginDir(). 'frontend/ukalikutz-render-blocks.php';
+    }
+
+     /**
+     * Includes all admin files to the plugin's directory.
+     *
+     */
+    public static function includeAdminFiles() {
+        // include self::getPluginDir(). 'frontend/ukalikutz-render-blocks.php';
+    }
 }
 
 // Hook the save function into the appropriate WordPress actions.
