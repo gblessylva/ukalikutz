@@ -1,7 +1,5 @@
 <?php 
 
-// Add this to your plugin's initialization file
-
 // Register the settings endpoint
 add_action('rest_api_init', function () {
     register_rest_route('ukalikutz/v1', '/settings', array(
