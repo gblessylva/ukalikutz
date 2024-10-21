@@ -5,9 +5,8 @@ import { SettingsPage } from './components';
 
 import { registerUkalictzBlocks } from './blocks';
 
-// registerUkalictzBlocks(); 
+registerUkalictzBlocks(); 
 domReady( () => {
 	const root = createRoot( document.getElementById( 'ukalikutz-settings' ) );
-	console.log(root);
 	root.render( <SettingsPage /> );
 } );

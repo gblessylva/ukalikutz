@@ -40,6 +40,23 @@ if (!defined('ABSPATH')) {
                         <label for="email"><?php _e('Email', 'ukalikutz'); ?></label>
                         <input type="email" id="email" name="email" required />
                     </div>
+                    <div class="form-group" id="sign-up-checkbox">
+                        <p><?php _e('We noticed you dont have an account with us, would you like to sign up?', 'ukalikutz'); ?></>
+                        <div class="form-group sign-up-checkbox-wrapper">
+                            <label for="sign-up"><?php _e('Yes', 'ukalikutz'); ?> 
+                            <input type="checkbox" id="sign-up" name="sign-up" required /></label>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group" id="password-group">
+                        <label for="password"><?php _e('Choose Password', 'ukalikutz'); ?></label>
+                        <input type="password" id="password" name="password" required />
+                        <span id="password-strength" style="color: red; display: none;"></span>
+
+                        <label for="confirm-password"><?php _e('Confirm Password', 'ukalikutz'); ?></label>
+                        <input type="password" id="confirm-password" name="confirm-password" required />
+                        <span id="password-match" style="color: red; display: none;"></span>
+                    </div>
                 
                 <?php }
             ?>

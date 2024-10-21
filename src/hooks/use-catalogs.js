@@ -15,7 +15,6 @@ const useCatalogs = () => {
                 }
                 const data = await response.json();
 
-                console.log(data);
                 setCatalogs(data);
             } catch (error) {
                 setError(error.message);
