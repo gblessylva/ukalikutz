@@ -99,7 +99,7 @@ function ukalikutz_enqueue_style_script( $admin_page ) {
 }
 
 add_action( 'admin_enqueue_scripts', 'ukalikutz_enqueue_style_script' );
-
+add_action( 'enqueue_scripts', 'ukalikutz_enqueue_style_script' );
 /**
  * Registers the salon booking settings.
  */
