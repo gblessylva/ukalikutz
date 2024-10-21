@@ -10,8 +10,12 @@ function ukalikutz_get_all_catalogues() {
     ));
 
     // Check if there are any errors or if terms are empty
-    if ( is_wp_error( $terms ) || empty( $terms ) ) {
+    if ( is_wp_error( $terms ) ) {
         return new WP_Error( 'no_catalogues', __( 'No catalogues found', 'ukalikutz' ), array( 'status' => 404 ) );
+    }
+
+    if (  empty( $terms ) ) {
+        return new WP_Error( 'no_catalogues', __( 'No catalogues found', 'ukalikutz' ), array( 'status' => 200 ) );
     }
 
     $data = array();

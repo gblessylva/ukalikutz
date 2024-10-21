@@ -68,7 +68,7 @@ const SalonCatalogs = () => {
 					))}
 				</div>
 			) : (
-				<p>No salon catalogs available.</p>
+				<p>No salon catalogs added yet.</p>
 			)}
 
 			{/* Render the modal */}

@@ -28,3 +28,10 @@ function ukalikutz_add_stylist_role() {
 }
 
 add_action( 'init', 'ukalikutz_add_stylist_role' );
+
+
+add_filter( 'show_admin_bar', 'restrict_admin_bar' );
+ 
+function restrict_admin_bar( $show ) {
+    return current_user_can( 'administrator' ) ? true : false;
+}

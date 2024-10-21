@@ -174,6 +174,27 @@ function ukalikutz_front_page_bar() {
 
 add_action( 'wp_body_open', 'ukalikutz_front_page_bar' );
 
+
+function ukalikutz_enqueue_ajax_script() {
+    wp_enqueue_script(
+        'ukalikutz-appointment-ajax',
+        plugin_dir_url(__FILE__) . 'src/frontend/js/appointment-ajax.js',  
+        ['jquery'], 
+        filemtime(plugin_dir_path(__FILE__) . 'src/frontend/js/appointment-ajax.js'), 
+        true
+    );
+
+    wp_localize_script('ukalikutz-appointment-ajax', 'ukalikutz_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('ukalikutz_nonce'),
+    ]);
+	
+}
+add_action('wp_enqueue_scripts', 'ukalikutz_enqueue_ajax_script');
+
+
+
+
 require_once plugin_dir_path( __FILE__ ) . 'includes/user-roles.php';
 
 // Custom Endpoints

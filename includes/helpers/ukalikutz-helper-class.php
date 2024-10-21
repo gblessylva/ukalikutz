@@ -42,6 +42,7 @@ class UkalikutzHelpers {
     public static function includeFrontendFiles() {
         include self::getPluginDir(). 'frontend/blocks/AppointmentBlock.php';
         include self::getPluginDir(). 'frontend/blocks/stylists-blocks.php';
+        include self::getPluginDir(). 'frontend/SaveAppointment.php';
     
     }
 
@@ -129,6 +130,85 @@ class UkalikutzHelpers {
         }
         return false;
     }
+
+    /**
+     * Retrieve data of the current logged-in user from user meta.
+     *
+     * @return array An associative array containing user data (first_name, last_name, email, phone).
+     */
+    public static function getCurrentUserData() {
+        // Get the ID of the currently logged-in user
+        $user_id = get_current_user_id();
+
+        // Check if a user is logged in
+        if ($user_id === 0) {
+            return []; // Return an empty array if no user is logged in
+        }
+
+        // Get user meta data
+        $first_name = get_user_meta($user_id, 'first_name', true);
+        $last_name = get_user_meta($user_id, 'last_name', true);
+        $phone_number = get_user_meta($user_id, 'phone_number', true); // Assuming phone number is saved as user meta
+        $user_info = get_userdata($user_id);
+        $email = $user_info ? $user_info->user_email : '';
+
+        // Return the data as an array
+        return [
+            'first_name' => $first_name ?: '',
+            'last_name' => $last_name ?: '',
+            'email' => $email ?: '',
+            'phone_number' => $phone_number ?: '',
+        ];
+    }
+
+     /**
+     * Check if a user with the given email exists, and create a new user if not.
+     *
+     * @param string $email The email of the user to check or create.
+     * @param string $first_name The first name of the new user.
+     * @param string $last_name The last name of the new user.
+     * @param string $phone_number Optional. The phone number of the new user.
+     * @param string $role Optional. The role to assign to the new user. Default is 'customer'.
+     *  @param string $password Optional. The role to assign to the new user. Default is 'customer'.
+     * @return array|WP_Error Array containing user ID and message on success, or WP_Error on failure.
+     */
+    public static function addCustomer($email, $first_name, $last_name, $password, $phone_number = '') {
+        // Check if the email already exists
+        // $user_id = email_exists($email);
+    
+        // if ($user_id) {
+        //     return ['user_exists' => true];
+        // }
+    
+        // Create the user with the provided password, email, and user details
+        $user_id = wp_create_user($email, $password, $email);
+    
+        // Check for any errors during user creation
+        if (is_wp_error($user_id)) {
+            return $user_id; // Return the error if user creation failed
+        }
+    
+        // Update the user information with first name, last name, and phone number
+        wp_update_user([
+            'ID'         => $user_id,
+            'first_name' => $first_name,
+            'last_name'  => $last_name,
+        ]);
+    
+        // If a phone number is provided, save it as user meta
+        if (!empty($phone_number)) {
+            update_user_meta($user_id, 'phone_number', $phone_number);
+        }
+    
+        // Assign the specified role to the new user (default is 'customer')
+        $user = new WP_User($user_id);
+        $role = 'customer';
+        $user->set_role($role);
+    
+        // Return the newly created user's ID and success message
+        return [$user_id];
+    }
+    
 }
 
 // Hook the save function into the appropriate WordPress actions.

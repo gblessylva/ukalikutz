@@ -114,6 +114,7 @@ function ukalikutz_get_appointments() {
         $appointment_id = $appointment->ID;
         $appointment_date = get_post_meta( $appointment_id, 'appointment_date', true );
         $appointment_time = get_post_meta( $appointment_id, 'appointment_time', true );
+        $service = get_post_meta( $appointment_id, 'service', true );
         $stylist_id = get_post_meta( $appointment_id, 'stylist_id', true );
         $client_id = get_post_meta( $appointment->ID, 'client_id', true );
         $appointment_full_date = $appointment_date ;
@@ -121,7 +122,7 @@ function ukalikutz_get_appointments() {
          // Get stylist name
          $stylist_user = get_userdata( $stylist_id );
          $stylist_name = $stylist_user ? $stylist_user->first_name . ' ' . $stylist_user->last_name : 'Unknown Stylist';
-
+        $selected_service = $service ? $service : 'Unknown Service';
          // Get client name
          $client_user = get_userdata( $client_id );
          $client_name = $client_user ? $client_user->first_name . ' ' . $client_user->last_name : 'Unknown Client';
@@ -140,7 +141,8 @@ function ukalikutz_get_appointments() {
             'stylist' =>  $stylist_name,
             'client' => $client_name,
             'cal_date'=>'2024-08-29 10:05',
-            'cal_end'=>'2024-08-29 10:35'
+            'cal_end'=>'2024-08-29 10:35',
+            'selected_service'=>$selected_service,
         );
     }
 
